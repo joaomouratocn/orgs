@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Orgs</string>
+    <string name="str_add_new_product">Add new product</string>
+    <string name="str_name">Name</string>
+    <string name="str_desc">Description</string>
+    <string name="str_price">Price</string>
+    <string name="str_save">Save</string>
+    <string name="str_image_delete">Image Delete</string>
+    <string name="str_update">Update</string>
+</resources>
