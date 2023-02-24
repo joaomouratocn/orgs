@@ -9,5 +9,6 @@ data class Product(
     var id:Int = 0,
     val name:String,
     val description:String,
-    val price:BigDecimal
+    val price:BigDecimal,
+    val image:String? = null
 ): Parcelable

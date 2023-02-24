@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:clickable="true"
+    android:elevation="8dp"
+    android:focusable="true"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_item_recycle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/str_image_item"
+            android:scaleType="centerCrop"
+            app:layout_constraintWidth_percent="0.3"
+            app:layout_constraintBottom_toBottomOf="@id/txv_price"
+            app:layout_constraintEnd_toStartOf="@id/txv_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/imagem_padrao"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"/>
+
+<!--        <androidx.constraintlayout.widget.Guideline-->
+<!--            android:id="@+id/guideline"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintGuide_percent="0.3"-->
+<!--            android:orientation="vertical"/>-->
+
+<!--app:layout_constraintHorizontal_weight="7" -->
+<!--app:layout_constraintHorizontal_weight="3"-->
+
+        <TextView
+            android:id="@+id/txv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat_bold"
+            android:maxLines="1"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@id/img_delete"
+            app:layout_constraintStart_toEndOf="@id/img_item_recycle"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Cesta de Frutas" />
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/str_image_delete"
+            android:src="@drawable/baseline_more_vert_24"
+            app:layout_constraintBottom_toBottomOf="@id/txv_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txv_name" />
+
+        <TextView
+            android:id="@+id/txv_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat"
+            android:maxLines="1"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txv_name"
+            app:layout_constraintTop_toBottomOf="@id/txv_name"
+            tools:text="Laranja, Manga e Uva" />
+
+        <TextView
+            android:id="@+id/txv_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txv_name"
+            app:layout_constraintTop_toBottomOf="@id/txv_desc"
+            tools:text="RS 10.00" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

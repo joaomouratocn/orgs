@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.activity.MainActivity">
+    tools:context=".ui.activity.FruitListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_main"
@@ -15,7 +15,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_product"/>
+        tools:listitem="@layout/item_product_recycle"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/float_new_product"

@@ -7,4 +7,15 @@
     <string name="str_save">Save</string>
     <string name="str_image_delete">Image Delete</string>
     <string name="str_update">Update</string>
+    <string name="str_image_item">Image Item</string>
+    <string name="str_load_image">Load image</string>
+    <string name="str_url_image">URL Image</string>
+    <string name="str_register_products">Register Products</string>
+    <string name="str_update_products">Update products</string>
+    <string name="str_edit">Edit</string>
+    <string name="str_delete">Delete</string>
+    <string name="str_confirm_delete">Really wish delete?</string>
+    <string name="str_confirm">Confirm</string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_detail">Detail</string>
 </resources>
