@@ -54,7 +54,7 @@ class ProductAdapter(products:List<Product>, private val listener:Onclick) :
 
     private fun showPopupMenu(view: View, product: Product) {
         val popupMenu = PopupMenu(view.context, view)
-        popupMenu.inflate(R.menu.menu_list_product)
+        popupMenu.inflate(R.menu.menu_options_product)
         popupMenu.setOnMenuItemClickListener{
             when(it.itemId){
                 R.id.menu_edit ->{

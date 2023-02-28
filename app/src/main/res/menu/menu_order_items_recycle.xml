@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_name_asc"
+        android:title="@string/str_name_asc"/>
+
+    <item
+        android:id="@+id/menu_name_desc"
+        android:title="@string/str_name_desc"/>
+
+    <item
+        android:id="@+id/menu_desc_asc"
+        android:title="@string/str_desc_asc"/>
+
+    <item
+        android:id="@+id/menu_desc_desc"
+        android:title="@string/str_desc_desc"/>
+
+    <item
+        android:id="@+id/menu_price_asc"
+        android:title="@string/str_price_asc"/>
+
+    <item
+        android:id="@+id/menu_price_desc"
+        android:title="@string/str_price_desc"/>
+
+</menu>
