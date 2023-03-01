@@ -2,36 +2,40 @@ package com.example.orgs.data.room.dao
 
 import androidx.room.*
 import com.example.orgs.data.room.entity.ProductEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao {
     @Query("SELECT * FROM products")
-    fun getAllProductsWhitOutOrder():List<ProductEntity>
+    fun getAllProductsWhitOutOrder():Flow<List<ProductEntity>>
 
     @Query("SELECT * FROM products ORDER BY product_name ASC")
-    fun getAllProductsNameAsc():List<ProductEntity>
+    suspend fun getAllProductsNameAsc():List<ProductEntity>
 
     @Query("SELECT * FROM products ORDER BY product_name DESC")
-    fun getAllProductsNameDesc():List<ProductEntity>
+    suspend fun getAllProductsNameDesc():List<ProductEntity>
 
     @Query("SELECT * FROM products ORDER BY product_desc ASC")
-    fun getAllProductsDescAsc():List<ProductEntity>
+    suspend fun getAllProductsDescAsc():List<ProductEntity>
 
     @Query("SELECT * FROM products ORDER BY product_desc DESC")
-    fun getAllProductsDescDesc():List<ProductEntity>
+    suspend fun getAllProductsDescDesc():List<ProductEntity>
 
     @Query("SELECT * FROM products ORDER BY product_price ASC")
-    fun getAllProductsPriceAsc():List<ProductEntity>
+    suspend fun getAllProductsPriceAsc():List<ProductEntity>
 
     @Query("SELECT * FROM products ORDER BY product_price DESC")
-    fun getAllProductsPriceDesc():List<ProductEntity>
+    suspend fun getAllProductsPriceDesc():List<ProductEntity>
 
     @Query("SELECT * FROM products WHERE id = :id")
-    fun getProduct(id : Int) : ProductEntity?
+    fun getProduct(id : Int) : Flow<ProductEntity?>
+
+    @Query("SELECT * FROM products WHERE id = :id")
+    fun getProductId(id : Int) : ProductEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertProduct(vararg productEntity: ProductEntity)
+    suspend fun insertProduct(vararg productEntity: ProductEntity)
 
     @Delete
-    fun deleteProduct(productEntity: ProductEntity)
+    suspend fun deleteProduct(productEntity: ProductEntity)
 }

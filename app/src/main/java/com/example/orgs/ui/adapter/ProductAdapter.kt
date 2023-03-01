@@ -12,7 +12,7 @@ import com.example.orgs.util.loadImage
 import java.text.NumberFormat
 import java.util.*
 
-class ProductAdapter(products:List<Product>, private val listener:Onclick) :
+class ProductAdapter(products:List<Product> = emptyList(), private val listener:Onclick) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){
 
     private val dataSet = products.toMutableList()

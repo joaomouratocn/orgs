@@ -5,17 +5,25 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.orgs.R
 import com.example.orgs.data.room.dao.ProductDao
 import com.example.orgs.data.room.database.AppDataBase
 import com.example.orgs.databinding.ActivityDetailBinding
 import com.example.orgs.model.Product
 import com.example.orgs.ui.dialog.Dialogs
-import com.example.orgs.util.*
+import com.example.orgs.util.SEND_ID_KEY
+import com.example.orgs.util.loadImage
+import com.example.orgs.util.toProduct
+import com.example.orgs.util.toProductEntity
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.*
 
+//Activity ultilizando lifecycleScope para fazer chamadas assincronas
 class DetailActivity : AppCompatActivity() {
+    val job = Job()
     private lateinit var receivedProduct : Product
 
     private val binding: ActivityDetailBinding by lazy {
@@ -43,10 +51,14 @@ class DetailActivity : AppCompatActivity() {
 
     private fun loadProduct() {
         val receivedId = intent.getIntExtra(SEND_ID_KEY, 0)
-        productDao.getProduct(receivedId)?.toProduct()?.let {
-            receivedProduct = it
-            loadFields()
-        } ?: finish()
+        lifecycleScope.launch() {
+            productDao.getProduct(receivedId).collect{
+                it?.toProduct()?.let {product ->
+                    receivedProduct = product
+                    loadFields()
+                }?:finish()
+            }
+        }
     }
 
     private fun loadFields() {
@@ -80,8 +92,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun deleteProduct() {
-        productDao.deleteProduct(receivedProduct.toProductEntity())
-        finish()
+        lifecycleScope.launch {
+            productDao.deleteProduct(receivedProduct.toProductEntity())
+            finish()
+        }
     }
 
     private fun openAddProductAct() {
