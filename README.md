@@ -14,5 +14,20 @@ Projeto desenvolvido acompanhando os seguintes cursos da alura:
 
 
 <p align="center">
-<img src="https://github.com/joaomouratocn/ContactList/blob/main/Screenshot_20210811_195558.png" width="300" height="600"/>
+<img src="https://github.com/joaomouratocn/orgs/blob/main/Screenshot_20230314_091700.png" width="300" height="600"/>
+</p>
+
+
+<p align="center">
+<img src="https://github.com/joaomouratocn/orgs/blob/main/Screenshot_20230314_092053.png" width="300" height="600"/>
+</p>
+
+
+<p align="center">
+<img src="https://github.com/joaomouratocn/orgs/blob/main/Screenshot_20230314_092138.png" width="300" height="600"/>
+</p>
+
+
+<p align="center">
+<img src="https://github.com/joaomouratocn/orgs/blob/main/Screenshot_20230314_092222.png" width="300" height="600"/>
 </p>
