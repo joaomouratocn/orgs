@@ -1,5 +1,6 @@
 package com.example.orgs.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -41,7 +42,10 @@ class RegisterActivity : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 userDao.saveUser(user)
-                openActivity(ProductListActivity::class.java)
+                openActivity(ProductListActivity::class.java){
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                }
                 finish()
             }catch (e:Exception){
                 Toast.makeText(
