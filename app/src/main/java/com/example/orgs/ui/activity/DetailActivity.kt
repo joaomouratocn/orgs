@@ -1,6 +1,5 @@
 package com.example.orgs.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,22 +8,17 @@ import androidx.lifecycle.lifecycleScope
 import com.example.orgs.R
 import com.example.orgs.data.room.dao.ProductDao
 import com.example.orgs.data.room.database.AppDataBase
+import com.example.orgs.data.room.entity.ProductEntity
 import com.example.orgs.databinding.ActivityDetailBinding
-import com.example.orgs.model.Product
 import com.example.orgs.ui.dialog.Dialogs
-import com.example.orgs.util.SEND_ID_KEY
-import com.example.orgs.util.loadImage
-import com.example.orgs.util.toProduct
-import com.example.orgs.util.toProductEntity
-import kotlinx.coroutines.Job
+import com.example.orgs.util.*
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.*
 
 //Activity ultilizando lifecycleScope para fazer chamadas assincronas
 class DetailActivity : AppCompatActivity() {
-    val job = Job()
-    private lateinit var receivedProduct : Product
+    private lateinit var receivedProduct : ProductEntity
 
     private val binding: ActivityDetailBinding by lazy {
         ActivityDetailBinding.inflate(layoutInflater)
@@ -51,9 +45,9 @@ class DetailActivity : AppCompatActivity() {
 
     private fun loadProduct() {
         val receivedId = intent.getIntExtra(SEND_ID_KEY, 0)
-        lifecycleScope.launch() {
+        lifecycleScope.launch {
             productDao.getProduct(receivedId).collect{
-                it?.toProduct()?.let {product ->
+                it?.let {product ->
                     receivedProduct = product
                     loadFields()
                 }?:finish()
@@ -79,7 +73,9 @@ class DetailActivity : AppCompatActivity() {
         if (::receivedProduct.isInitialized){
             when (item.itemId) {
                 R.id.menu_edit -> {
-                    openAddProductAct()
+                    this.openActivity(AddProductActivity::class.java){
+                        putExtra(SEND_ID_KEY, receivedProduct.id)
+                    }
                 }
                 R.id.menu_delete -> {
                     Dialogs(this).confirmDelete {
@@ -93,14 +89,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun deleteProduct() {
         lifecycleScope.launch {
-            productDao.deleteProduct(receivedProduct.toProductEntity())
+            productDao.deleteProduct(receivedProduct)
             finish()
         }
-    }
-
-    private fun openAddProductAct() {
-        val intent = Intent(this, AddProductActivity::class.java)
-        intent.putExtra(SEND_ID_KEY, receivedProduct.id)
-        startActivity(intent)
     }
 }

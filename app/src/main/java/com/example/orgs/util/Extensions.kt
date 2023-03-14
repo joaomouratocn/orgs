@@ -1,44 +1,35 @@
 package com.example.orgs.util
 
+import android.content.Context
+import android.content.Intent
 import android.widget.ImageView
+import android.widget.Toast
 import coil.load
 import com.example.orgs.R
-import com.example.orgs.data.room.entity.ProductEntity
-import com.example.orgs.model.Product
 
 fun ImageView.loadImage(image: String?) {
-    load(image){
+    load(image) {
         fallback(R.drawable.imagem_padrao)
         error(R.drawable.erro)
         placeholder(R.drawable.loading)
     }
 }
 
-fun Product.toProductEntity():ProductEntity{
-    return ProductEntity(
-        id = this.id,
-        name = this.name,
-        description = this.description,
-        price = this.price,
-        image = this.image
-    )
+fun Context.openActivity(
+    clazz: Class<*>,
+    intent: Intent.() -> Unit = {}
+) {
+    Intent(this, clazz)
+        .apply {
+            intent()
+            startActivity(this)
+        }
 }
 
-fun ProductEntity.toProduct():Product{
-    return Product(
-        id = this.id,
-        name = this.name,
-        description = this.description,
-        price = this.price,
-        image = this.image
-    )
-}
-
-fun List<ProductEntity>.toListProduct():List<Product>{
-    val listProduct = mutableListOf<Product>()
-    this.forEach{productEntity ->
-        productEntity.toProduct()
-        listProduct.add(productEntity.toProduct())
-    }
-    return listProduct
+fun Context.toast(message: Int){
+    Toast.makeText(
+        this,
+        message,
+        Toast.LENGTH_LONG
+    ).show()
 }

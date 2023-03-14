@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orgs.R
+import com.example.orgs.data.room.entity.ProductEntity
 import com.example.orgs.databinding.ItemProductRecycleBinding
-import com.example.orgs.model.Product
 import com.example.orgs.util.loadImage
 import java.text.NumberFormat
 import java.util.*
 
-class ProductAdapter(products:List<Product> = emptyList(), private val listener:Onclick) :
+class ProductAdapter(products:List<ProductEntity> = emptyList(), private val listener:Onclick) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){
 
     private val dataSet = products.toMutableList()
@@ -25,7 +25,7 @@ class ProductAdapter(products:List<Product> = emptyList(), private val listener:
             private val imgProduct = binding.imgItemRecycle
             val imgDelete = binding.imgDelete
 
-            fun bind(product: Product) {
+            fun bind(product: ProductEntity) {
                 txvName.text = product.name
                 txvDesc.text = product.description
                 txvPrice.text =  format.format(product.price)
@@ -52,7 +52,7 @@ class ProductAdapter(products:List<Product> = emptyList(), private val listener:
         }
     }
 
-    private fun showPopupMenu(view: View, product: Product) {
+    private fun showPopupMenu(view: View, product: ProductEntity) {
         val popupMenu = PopupMenu(view.context, view)
         popupMenu.inflate(R.menu.menu_options_product)
         popupMenu.setOnMenuItemClickListener{
@@ -71,15 +71,15 @@ class ProductAdapter(products:List<Product> = emptyList(), private val listener:
         popupMenu.show()
     }
 
-    fun update(allProducts: List<Product>) {
+    fun update(allProducts: List<ProductEntity>) {
         dataSet.clear()
         dataSet.addAll(allProducts)
         notifyDataSetChanged()
     }
 
     interface Onclick{
-        fun itemClickListener(product: Product)
-        fun optDeleteListener(product: Product)
-        fun optEditListener(product: Product)
+        fun itemClickListener(product: ProductEntity)
+        fun optDeleteListener(product: ProductEntity)
+        fun optEditListener(product: ProductEntity)
     }
 }

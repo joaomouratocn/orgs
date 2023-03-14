@@ -17,4 +17,6 @@ data class ProductEntity(
     val price: BigDecimal,
     @ColumnInfo(name = "product_image")
     val image: String?,
+    @ColumnInfo(name = "user_id")
+    val userId: Int? = null
 )
